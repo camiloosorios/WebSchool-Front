@@ -9,9 +9,6 @@ import { ThemeServiceService } from 'src/app/services/theme-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  //Variable para validar si un campo está vacio
-  isEmpty:boolean = false;
-
   constructor( private servicioTema: ThemeServiceService, private fb: FormBuilder ) { }
 
   ngOnInit(): void {
@@ -28,33 +25,25 @@ export class LoginComponent implements OnInit {
     remember: []
   });
 
-  //Validar campos del formulario
-  validation(campo: string) {
-    if(this.formLogin.controls[campo].hasError('required') && this.formLogin.controls[campo].touched){
-      this.isEmpty = false;
-      return true;
-    } else if(this.formLogin.controls[campo].hasError('email') && this.formLogin.controls[campo].touched){
-      this.isEmpty = true;
-      return false;
-    } else {
-      this.isEmpty = false;
-      return false;
-    }
+  //Valida que los campos se encuentren correctamente diligenciados
+  formValidate( campo: string ) {
+    return this.formLogin.controls[campo].invalid && this.formLogin.controls['email'].touched 
+      ? true 
+      : false
   }
-
-  validationCss(campo:string) {
-    return this.formLogin.controls[campo].invalid && this.formLogin.controls[campo].touched ? 'error' : 'text';
+  
+  //Resalta en el formulario los campos con errores
+  cssValidate(campo:string) {
+    return this.formLogin.controls[campo].invalid && this.formLogin.controls[campo].touched 
+      ? 'error' 
+      : 'text';
   }
 
   //Método para postear la información del formulario
   login() {
 
     this.formLogin.markAllAsTouched();
-    console.log(this.formLogin.controls['email'].errors && this.formLogin.controls['email'].touched);
-    
-    if(this.formLogin.invalid){      
-      this.formLogin.controls['email'].touched;
-    }
+    console.log(this.formLogin.controls['password']);
     
 
   }

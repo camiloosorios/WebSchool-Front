@@ -13,15 +13,13 @@
             <form [formGroup]="formLogin" (ngSubmit)="login()" autocomplete="off">
                 <div class="mt-3">                    
                     <label for="email" class="form-label fw-bold text-secondary">Correo Electrónico</label>
-                    <input type="text" id="email" [class]="validationCss('email')" formControlName="email" placeholder="Ingresa tu correo">
-                    <p *ngIf="validation('email')" class="input-error">Campo Requerido</p>
-                    <p *ngIf="isEmpty" class="input-error">Correo Electrónico Inválido</p>
+                    <input type="text" id="email" [class]="cssValidate('email')" formControlName="email" placeholder="Ingresa tu correo">
+                    <p *ngIf="formValidate('email')" class="input-error">Correo Electrónico Inválido</p>
                 </div>
                 <div class="mt-3">                    
                     <label for="password" class="form-label fw-bold text-secondary">Contraseña</label>
-                    <input type="password" id="password" [class]="validationCss('password')" formControlName="password" placeholder="Ingresa tu contraseña">
-                    <p *ngIf="validation('password')" class="input-error">Campo Requerido</p>
-                    <!-- <p class="input-error">La Contraseña debe tener mín. 6 caractéres</p> -->
+                    <input type="password" id="password" [class]="cssValidate('password')" formControlName="password" placeholder="Ingresa tu contraseña">
+                    <p *ngIf="formValidate('password')" class="input-error">La Contraseña debe tener mín. 6 caractéres</p>
                 </div>
                 <div class="mt-3">
                         <input type="checkbox" class="checkbox" formControlName="remember">

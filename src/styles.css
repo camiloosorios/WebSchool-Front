@@ -7,4 +7,5 @@
 body{
     background-color: var(--primaryColor);
     color: var(--textPrimary);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }

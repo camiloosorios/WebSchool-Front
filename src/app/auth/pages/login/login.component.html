@@ -1,28 +1,39 @@
-<div class="container">
-    <div class="d-flex justify-content-center align-items-center py-5">
-        <div class="col-md-5 col-10">            
-                <h1 class="text-center mb-4">Inicio de Sesión</h1>
-                <div class="card p-3">            
-                    <form action="">
-                        <div class="mt-3">                    
-                            <label for="email" class="form-label text-bold text-start">Correo Electrónico</label>
-                            <input type="text" id="email"class="form-control">
-                        </div>
-                        <div class="mt-3">                    
-                            <label for="password" class="form-label text-bold text-start">Contraseña</label>
-                            <input type="password" id="password"class="form-control">
-                        </div>
-                        <div class="mt-3">
-                                <input type="checkbox" class="form-check-input">
-                                <span class="ms-2">Recordarme</span>    
-                            </div>
-                        <div class="mt-4 d-flex justify-content-between">
-                            <a routerLink="/auth/register">Crear una cuenta</a>
-                            <a href="#">Olvide mi contraseña</a>   
-                        </div>
-                        <button class="btn btn-primary col-12 mt-4 mb-3">Iniciar Sesión</button>
-                    </form>
+
+<div class="d-flex justify-content-center m-0 m-md-5 w-md-2">
+    <div class="contenedor d-flex flex-column-reverse flex-md-row col-12 col-md-9">        
+        <div class="col-md-6 col-12 mt-5 mt-md-0">
+            <h1 class="text-center mt-2 fw-bold mb-0">Webschool</h1>
+            <img src="./assets/img/cartoon-teacher-student-standing-near-4577764.png" alt="Imagen Login" class="imagen-login mt-2 mb-2">
+            <p class="text-center mb-0">Ingresa a <span class="fw-bold">Webschool</span>!</p>
+            <p class="text-center">Plataforma web para profesores y estudiantes.</p>
+        </div>
+        <div class="formulario col-md-6 col-12 p-5">
+            <h2 class="text-color fw-bold">Bienvenido!</h2>
+            <h3 class="text-color">Inicia Sesión <span class="text-secondary">con tu cuenta</span></h3>
+            <form [formGroup]="formLogin" (ngSubmit)="login()" autocomplete="off">
+                <div class="mt-3">                    
+                    <label for="email" class="form-label fw-bold text-secondary">Correo Electrónico</label>
+                    <input type="text" id="email" [class]="validationCss('email')" formControlName="email" placeholder="Ingresa tu correo">
+                    <p *ngIf="validation('email')" class="input-error">Campo Requerido</p>
+                    <p *ngIf="isEmpty" class="input-error">Correo Electrónico Inválido</p>
                 </div>
-            </div>
-        </div>  
+                <div class="mt-3">                    
+                    <label for="password" class="form-label fw-bold text-secondary">Contraseña</label>
+                    <input type="password" id="password" [class]="validationCss('password')" formControlName="password" placeholder="Ingresa tu contraseña">
+                    <p *ngIf="validation('password')" class="input-error">Campo Requerido</p>
+                    <!-- <p class="input-error">La Contraseña debe tener mín. 6 caractéres</p> -->
+                </div>
+                <div class="mt-3">
+                        <input type="checkbox" class="checkbox" formControlName="remember">
+                        <span class="ms-2 text-secondary fw-bold">Recordarme</span>    
+                    </div>
+                <div class="mt-4 d-flex justify-content-between">
+                    <p routerLink="/auth/register" class="text-color fw-bold link">Crear una cuenta</p>
+                    <p href="#" class="text-color fw-bold link">Olvide mi contraseña</p>   
+                </div>
+                <button class="button mt-3 fw-bold">Iniciar Sesión</button>
+            </form>
+        </div>
     </div>
+
+</div>

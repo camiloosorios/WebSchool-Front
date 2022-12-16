@@ -1,0 +1,69 @@
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 8px #6742e0;
+    align-items: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.formulario{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: white;
+}
+
+.text-color{
+    color: var(--primaryColor);
+}
+
+.button {
+    height: 35px;
+    width: 100%;
+    background-color: var(--primaryColor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #7553e5;
+}
+
+.imagen-login {
+    width: 90%;
+}
+
+.link:hover {
+    color: #6742e0;
+    cursor: pointer;
+}
+
+
+input.text {
+    height: 30px;
+    border: solid 1px;
+    border-color: rgb(156, 156, 156);
+    border-radius: 5px;
+    width: 100%;
+}
+
+input:focus, select:focus{
+    border-color: #7553e5;
+    box-shadow: 0px 0px 3px #5c34df;
+    outline: 0 none;
+}
+
+img {
+    border-radius: 10px;
+}
+
+select {
+    height: 33px;
+    color: rgb(114, 114, 114);
+    border: solid 1px;
+    border-color: rgb(156, 156, 156);
+    border-radius: 5px;
+    width: 100%;
+}

@@ -1,4 +1,9 @@
 
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .contenedor {
     display: flex;
     flex-direction: row;
@@ -32,12 +37,28 @@
 }
 
 .imagen-login {
-    width: 90%;
+    width: 65%;
 }
 
 .link:hover {
     color: #6742e0;
     cursor: pointer;
+}
+
+.error {
+    height: 30px;
+    border: solid 1px;
+    border-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.input-error {
+    color: rgb(253, 38, 38);
+    padding: 5px;
+    font-size: smaller;
+    font-weight: bold;
+    margin: 0px;
 }
 
 
@@ -53,10 +74,6 @@ input:focus, select:focus{
     border-color: #7553e5;
     box-shadow: 0px 0px 3px #5c34df;
     outline: 0 none;
-}
-
-img {
-    border-radius: 10px;
 }
 
 select {

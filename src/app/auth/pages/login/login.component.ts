@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
 
   //Se captura la información del formulario
   formLogin: FormGroup = this.fb.group({
-    email: [, [Validators.required, Validators.email]],
-    password: [, [Validators.required, Validators.minLength(6)]],
+    email: [, [Validators.required]],
+    password: [, [Validators.required]],
     remember: []
   });
 
   //Valida que los campos se encuentren correctamente diligenciados
   formValidate( campo: string ) {
-    return this.formLogin.controls[campo].invalid && this.formLogin.controls['email'].touched 
+    return this.formLogin.controls[campo].invalid && this.formLogin.controls[campo].touched 
       ? true 
       : false
   }

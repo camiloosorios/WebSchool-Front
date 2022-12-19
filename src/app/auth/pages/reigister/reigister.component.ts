@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthServiceService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-reigister',
@@ -8,7 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ReigisterComponent  {
 
-  constructor( private fb: FormBuilder ) { }
+  constructor(  private fb: FormBuilder,
+                private authService: AuthServiceService ) { }
 
   //Se relacionan las variables con el formulario
   formRegister: FormGroup = this.fb.group({
@@ -29,8 +31,8 @@ export class ReigisterComponent  {
   //Validar que haya un rol seleccionado
   rolValidate() {
     return this.formRegister.controls['role'].touched && this.formRegister.controls['role'].value == 0
-      ? true
-      : false
+     ? true
+     : false
   }
 
   //Validar que las contraseñas sean iguales
@@ -43,13 +45,27 @@ export class ReigisterComponent  {
 
   //Mostrar errores con CSS
   cssValidate( field: string ) {
-    return this.formRegister.controls[field].touched && this.formRegister.controls[field].errors
-      ? 'error'
-      : 'text'
+    //Validamos errores en el campo de Role
+    if(this.formRegister.controls['role'].touched && this.formRegister.controls['role'].value == 0){
+      this.formRegister.controls['role'].setErrors({'required': true});
+      return 'error'
+    }
+    //Validamos errores en los demas campos
+    else if(this.formRegister.controls[field].touched && this.formRegister.controls[field].errors){
+      return 'error'
+    } else {
+      return 'text'
+    }
   }
 
   register() {
-    this.formRegister.markAllAsTouched();
+    if(this.formRegister.invalid){
+      this.formRegister.markAllAsTouched();
+
+    } else {
+      this.authService.register();
+    }
+    
   }
 
 }

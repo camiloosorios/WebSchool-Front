@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ThemeServiceService } from 'src/app/services/theme-service.service';
+import { AuthServiceService } from 'src/app/services/auth.service';
+import { ThemeServiceService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import { ThemeServiceService } from 'src/app/services/theme-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private servicioTema: ThemeServiceService, private fb: FormBuilder ) { }
+  constructor(  private servicioTema: ThemeServiceService, 
+                private fb: FormBuilder,
+                private authService: AuthServiceService ) { }
 
   ngOnInit(): void {
 
@@ -42,8 +45,12 @@ export class LoginComponent implements OnInit {
   //Método para postear la información del formulario
   login() {
 
-    this.formLogin.markAllAsTouched();
-    console.log(this.formLogin.controls['password']);
+    if(this.formLogin.invalid){
+      this.formLogin.markAllAsTouched();
+      return;
+    } else {
+      this.authService.login();
+    }
     
 
   }

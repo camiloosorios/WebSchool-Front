@@ -21,7 +21,7 @@
                 </div>
                 <div class="mt-3">                    
                     <label for="role" class="form-label fw-bold text-secondary">Tipo de Usuario</label>
-                    <select id="role" formControlName="role" [class]="cssValidate('name')">
+                    <select id="role" formControlName="role" [class]="cssValidate('role')">
                         <option value="0">Seleccione una opción</option>
                         <option value="1">Docente</option>
                         <option value="2">Estudiante</option>
@@ -30,12 +30,12 @@
                 </div>
                 <div class="mt-3">                    
                     <label for="password" class="form-label fw-bold text-secondary">Contraseña</label>
-                    <input type="password" id="password" [class]="cssValidate('name')" placeholder="Ingresa tu Contraseña" formControlName="password">
+                    <input type="password" id="password" [class]="cssValidate('password')" placeholder="Ingresa tu Contraseña" formControlName="password">
                     <p *ngIf="formValidate('password')" class="input-error">La Contraseña debe tener min. 6 caractéres</p>
                 </div>
                 <div class="mt-3">                    
                     <label for="password_validation" class="form-label fw-bold text-secondary">Confirmar Contraseña</label>
-                    <input type="password" id="password_validation" [class]="cssValidate('name')"placeholder="Confirma tu Contraseña" formControlName="password_validation">
+                    <input type="password" id="password_validation" [class]="cssValidate('password_validation')"placeholder="Confirma tu Contraseña" formControlName="password_validation">
                     <p *ngIf="formValidate('password_validation')" class="input-error">La Confirmación de Contraseña es requerida</p>
                     <p *ngIf="passValidate() && !formValidate('password_validation')" class="input-error">Las Contraseñas no coinciden</p>
                 </div>

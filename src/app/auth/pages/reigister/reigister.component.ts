@@ -26,6 +26,7 @@ export class ReigisterComponent  {
     return this.formRegister.controls[field].touched && this.formRegister.controls[field].errors
       ? true
       : false
+
   }
 
   //Validar que haya un rol seleccionado
@@ -37,17 +38,26 @@ export class ReigisterComponent  {
 
   //Validar que las contraseñas sean iguales
   passValidate() {
-    return this.formRegister.controls['password'].value?.trim() !== this.formRegister.controls['password_validation'].value?.trim() 
-        && this.formRegister.controls['password_validation'].touched
-          ? true
-          : false
+    const password1 = this.formRegister.controls['password'];
+    const password2 = this.formRegister.controls['password_validation'];
+
+    if(password1.value?.trim() !== password2.value?.trim() && password2.touched) {
+      //Establecemos error si las contraseñas no son iguales
+      this.formRegister.setErrors({'notEqual': true});
+      return true;
+
+    } else {
+      return false;
+    }
   }
 
   //Mostrar errores con CSS
   cssValidate( field: string ) {
+    const role = this.formRegister.controls['role'];
+
     //Validamos errores en el campo de Role
-    if(this.formRegister.controls['role'].touched && this.formRegister.controls['role'].value == 0){
-      this.formRegister.controls['role'].setErrors({'required': true});
+    if(role.touched && role.value == 0){
+      role.setErrors({'required': true});
       return 'error'
     }
     //Validamos errores en los demas campos
@@ -61,7 +71,8 @@ export class ReigisterComponent  {
   register() {
     if(this.formRegister.invalid){
       this.formRegister.markAllAsTouched();
-
+      return;
+      
     } else {
       this.authService.register();
     }

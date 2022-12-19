@@ -37,7 +37,7 @@
                     <label for="password_validation" class="form-label fw-bold text-secondary">Confirmar Contraseña</label>
                     <input type="password" id="password_validation" [class]="cssValidate('name')"placeholder="Confirma tu Contraseña" formControlName="password_validation">
                     <p *ngIf="formValidate('password_validation')" class="input-error">La Confirmación de Contraseña es requerida</p>
-                    <p *ngIf="passValidate()" class="input-error">Las Contraseñas no coinciden</p>
+                    <p *ngIf="passValidate() && !formValidate('password_validation')" class="input-error">Las Contraseñas no coinciden</p>
                 </div>
                 <div class="mt-4 d-flex justify-content-between">
                     <p routerLink="/auth/login" class="text-color fw-bold link">Iniciar Sesión</p>

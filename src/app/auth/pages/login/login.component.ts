@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   //Se captura la información del formulario
   formLogin: FormGroup = this.fb.group({
-    email: [, [Validators.required]],
+    email   : [, [Validators.required]],
     password: [, [Validators.required]],
     remember: []
   });
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       : false
   }
   
-  //Resalta en el formulario los campos con errores
+  //Mostrar errores con CSS
   cssValidate(campo:string) {
     return this.formLogin.controls[campo].invalid && this.formLogin.controls[campo].touched 
       ? 'error' 

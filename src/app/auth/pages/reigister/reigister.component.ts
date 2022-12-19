@@ -35,9 +35,10 @@ export class ReigisterComponent  {
 
   //Validar que las contraseñas sean iguales
   passValidate() {
-    return this.formRegister.controls['password'].value?.trim() !== this.formRegister.controls['password_validation'].value?.trim() && this.formRegister.controls['password_validation'].touched
-      ? true
-      : false
+    return this.formRegister.controls['password'].value?.trim() !== this.formRegister.controls['password_validation'].value?.trim() 
+        && this.formRegister.controls['password_validation'].touched
+          ? true
+          : false
   }
 
   //Mostrar errores con CSS

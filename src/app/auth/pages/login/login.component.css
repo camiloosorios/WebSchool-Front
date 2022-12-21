@@ -8,15 +8,15 @@
 .contenedor {
     display: flex;
     box-shadow: 0px 0px 8px #5434bc;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     flex-direction: row;
     align-items: center;
 }
 
 .formulario{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     background-color: white;
 }
 

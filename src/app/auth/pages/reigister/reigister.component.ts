@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import Swal from "sweetalert2";
 import { AuthServiceService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +13,8 @@ import { AuthServiceService } from 'src/app/services/auth.service';
 export class ReigisterComponent  {
 
   constructor(  private fb: FormBuilder,
-                private authService: AuthServiceService ) { }
+                private authService: AuthServiceService,
+                private router: Router ) { }
 
   //Se relacionan las variables con el formulario
   formRegister: FormGroup = this.fb.group({
@@ -30,7 +34,7 @@ export class ReigisterComponent  {
   }
 
   //Validar que haya un rol seleccionado
-  rolValidate() {
+  rolValidate(): boolean {
     return this.formRegister.controls['role'].touched && this.formRegister.controls['role'].value == 0
      ? true
      : false
@@ -69,14 +73,24 @@ export class ReigisterComponent  {
   }
 
   register(): void {
+    //Si el formulario es inválido marcamos los errores
     if(this.formRegister.invalid){
       this.formRegister.markAllAsTouched();
       return;
 
     } else {
+      //Realizamos peticion al servicio posteando la información del formulario
       this.authService.register(this.formRegister.value).subscribe({
-        next: resp => console.log(resp),
-        error: err => console.log(err.error)
+        next: () => {
+          this.router.navigate(['dashboard']);
+        },
+        error: err => {
+          Swal.fire({
+            icon: 'error',
+            title: '¡Upss!',
+            text: err.error.msg
+          })
+        }
       });
     }
     

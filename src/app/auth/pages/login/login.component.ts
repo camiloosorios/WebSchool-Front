@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import  Swal  from "sweetalert2";
 import { AuthServiceService } from 'src/app/services/auth.service';
 import { ThemeServiceService } from 'src/app/services/theme.service';
 
@@ -12,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(  private servicioTema: ThemeServiceService, 
                 private fb: FormBuilder,
-                private authService: AuthServiceService ) { }
+                private authService: AuthServiceService,
+                private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -50,8 +54,17 @@ export class LoginComponent implements OnInit {
       return;
     } else {      
       this.authService.login(this.formLogin.value).subscribe({
-        next: (resp) => console.log(resp),
-        error: (err) => console.log(err.error)        
+        next: () => {
+          this.router.navigate(['dashboard']);
+        },
+        error: (err) => {
+          console.log(err.error);
+          Swal.fire({
+            icon: 'error',
+            title: '¡Upss!',
+            text: err.error.msg,
+          })
+        }       
         
       })
       

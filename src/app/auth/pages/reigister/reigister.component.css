@@ -9,13 +9,13 @@
     flex-direction: row;
     box-shadow: 0px 0px 8px #6742e0;
     align-items: center;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .formulario{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     background-color: white;
 }
 

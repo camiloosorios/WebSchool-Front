@@ -48,8 +48,13 @@ export class LoginComponent implements OnInit {
     if(this.formLogin.invalid){
       this.formLogin.markAllAsTouched();
       return;
-    } else {
-      this.authService.login();
+    } else {      
+      this.authService.login(this.formLogin.value).subscribe({
+        next: (resp) => console.log(resp),
+        error: (err) => console.log(err.error)        
+        
+      })
+      
     }
     
 

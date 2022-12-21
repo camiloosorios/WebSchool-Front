@@ -22,7 +22,7 @@ export class ReigisterComponent  {
   });
 
   //Validar los campos
-  formValidate( field: string ) {
+  formValidate( field: string ): boolean {
     return this.formRegister.controls[field].touched && this.formRegister.controls[field].errors
       ? true
       : false
@@ -37,7 +37,7 @@ export class ReigisterComponent  {
   }
 
   //Validar que las contraseñas sean iguales
-  passValidate() {
+  passValidate(): boolean {
     const password1 = this.formRegister.controls['password'];
     const password2 = this.formRegister.controls['password_validation'];
 
@@ -52,7 +52,7 @@ export class ReigisterComponent  {
   }
 
   //Mostrar errores con CSS
-  cssValidate( field: string ) {
+  cssValidate( field: string ): string {
     const role = this.formRegister.controls['role'];
 
     //Validamos errores en el campo de Role
@@ -68,13 +68,16 @@ export class ReigisterComponent  {
     }
   }
 
-  register() {
+  register(): void {
     if(this.formRegister.invalid){
       this.formRegister.markAllAsTouched();
       return;
-      
+
     } else {
-      this.authService.register();
+      this.authService.register(this.formRegister.value).subscribe({
+        next: resp => console.log(resp),
+        error: err => console.log(err.error)
+      });
     }
     
   }

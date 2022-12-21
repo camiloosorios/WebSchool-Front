@@ -10,7 +10,7 @@
         <div class="formulario col-md-6 col-12 p-5 mt-4 mt-md-0">
             <h2 class="text-color fw-bold">Bienvenido!</h2>
             <h3 class="text-color">Inicia Sesión <span class="text-secondary">con tu cuenta</span></h3>
-            <form [formGroup]="formLogin" (ngSubmit)="login()" autocomplete="off">
+            <form [formGroup]="formLogin" (ngSubmit)="login()">
                 <div class="mt-3">                    
                     <label for="email" class="form-label fw-bold text-secondary">Correo Electrónico</label>
                     <input type="text" id="email" [class]="cssValidate('email')" formControlName="email" placeholder="Ingresa tu correo">

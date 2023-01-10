@@ -36,7 +36,11 @@ export class RenewPasswordComponent {
       this.formRenew.markAllAsTouched();
       return;
     } else {
-      this.authService.renew();
+      this.authService.renew(this.formRenew.controls['email'].value)
+        .subscribe( resp => {
+          console.log(resp);
+          
+        } )
     }
   }
 

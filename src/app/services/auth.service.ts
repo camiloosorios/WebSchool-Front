@@ -26,9 +26,14 @@ export class AuthServiceService {
     return this.http.post(url, body);
   }
 
-  renew(){
-    this.http.get('');
-    console.log('renew');
+  renew(email:string){
+
+    const url = `${this.apiURL}/renew`;
+    const body = {
+      email
+    }
+
+    return this.http.post(url, body);
   }
 
 }

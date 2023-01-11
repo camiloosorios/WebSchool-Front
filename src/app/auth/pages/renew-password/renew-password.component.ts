@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
+import { Response } from '../../interfaces/response.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-renew-password',
@@ -10,7 +13,8 @@ import { AuthServiceService } from 'src/app/services/auth.service';
 export class RenewPasswordComponent {
 
   constructor(  private fb: FormBuilder,
-                private authService: AuthServiceService ) { }
+                private authService: AuthServiceService,
+                private router: Router ) { }
 
   formRenew: FormGroup = this.fb.group({
     email: [, [Validators.required, Validators.email]]
@@ -37,10 +41,32 @@ export class RenewPasswordComponent {
       return;
     } else {
       this.authService.renew(this.formRenew.controls['email'].value)
-        .subscribe( resp => {
-          console.log(resp);
-          
-        } )
+        .subscribe({
+          next: (resp: Response) => {
+            
+            Swal.fire({
+              icon: 'success',
+              title: '¡Correo enviado!',
+              text: resp.msg,
+              confirmButtonText: 'Iniciar Sesión'
+            })
+            .then( event => {
+              if (event.isConfirmed) {
+                this.router.navigate(['login']);                
+              }
+            })
+
+          },
+          error: (err) => {
+            
+            Swal.fire({
+              icon: 'error',
+              title: '¡Upss!',
+              text: err.error.msg,
+            });
+            
+          }
+        })
     }
   }
 

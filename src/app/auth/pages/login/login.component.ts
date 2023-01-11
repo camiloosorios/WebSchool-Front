@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import  Swal  from "sweetalert2";
 import { AuthServiceService } from 'src/app/services/auth.service';
 import { ThemeServiceService } from 'src/app/services/theme.service';
+import { Response } from '../../interfaces/response.interface';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
   
   //Mostrar errores con CSS
-  cssValidate(campo:string) {
+  cssValidate( campo:string ) {
     return this.formLogin.controls[campo].invalid && this.formLogin.controls[campo].touched 
       ? 'error' 
       : 'text';
@@ -54,8 +55,15 @@ export class LoginComponent implements OnInit {
       return;
     } else {      
       this.authService.login(this.formLogin.value).subscribe({
-        next: () => {
-          this.router.navigate(['dashboard']);
+        next: (resp: Response) => {
+          // this.router.navigate(['dashboard']);
+          const token:string = resp.token;
+
+          console.log(token);
+          
+          //Guardamos el token en el session storage
+          sessionStorage.setItem('token', token);
+          
         },
         error: (err) => {
           console.log(err.error);

@@ -26,7 +26,7 @@ export class AuthServiceService {
     return this.http.post(url, body);
   }
 
-  renew(email:string){
+  renew(email:string): Observable<any>{
 
     const url = `${this.apiURL}/renew`;
     const body = {
@@ -34,6 +34,16 @@ export class AuthServiceService {
     }
 
     return this.http.post(url, body);
+  }
+
+  update(password:string, token: string): Observable<any>{
+
+    const url = `${this.apiURL}/updatepassword?token=${token}`;
+    const body = {
+      password
+    }
+
+    return this.http.put(url, body);
   }
 
 }
